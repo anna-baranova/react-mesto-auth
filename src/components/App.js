@@ -9,7 +9,6 @@ import ImagePopup from "./ImagePopup";
 
 function App() {
 
-
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false)
     const [isAddPlacePopupOpen, setiIsAddPlacePopupOpen] = React.useState(false)
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false)
@@ -32,7 +31,6 @@ function App() {
         setIsImagePopupOpen(true)
         setSelectedCard(item)
     }
-
 
     function closeAllPopups() {
         setIsEditProfilePopupOpen(false)
