@@ -10,9 +10,7 @@ class Api {
 
     getUserData() {
         return fetch (`${this._baseUrl}/users/me`, {
-            headers: {
-                authorization: this._token
-            }
+            headers: {authorization: this._token}
         })
         .then(res => this._getResponseData(res))
     }    
@@ -24,7 +22,7 @@ class Api {
             }
         })
         .then(res => this._getResponseData(res))
-    }
+    };
 
     changeUserData(data) {
         return fetch (`${this._baseUrl}/users/me`, {
@@ -115,3 +113,4 @@ const api = new Api({
   })
 
 export default api;
+
