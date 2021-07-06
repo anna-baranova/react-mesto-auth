@@ -32,8 +32,8 @@ class Api {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                name: data['input-name'],
-                about: data['input-job']
+                name: data.name,
+                about: data.about
             })
         })
         .then(res => this._getResponseData(res))
@@ -47,7 +47,7 @@ class Api {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                avatar: data['input-avatar']
+                avatar: data.avatar
             })
         })
         .then(res => this._getResponseData(res))
@@ -61,8 +61,8 @@ class Api {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                name: data['input-place'],
-                link: data['input-link']
+                name: data.name,
+                link: data.link
             })
         })
         .then(res => this._getResponseData(res))
@@ -78,17 +78,16 @@ class Api {
         .then(res => this._getResponseData(res))
     }
 
-    likeCard(id) {
-        return fetch (`${this._baseUrl}/cards/likes/${id}`, {
+    changeLikeCardStatus(id, isLiked) {
+        if(isLiked)
+        {return fetch (`${this._baseUrl}/cards/likes/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: this._token
             }
         })
         .then(res => this._getResponseData(res))
-    }
-
-    unlikeCard(id) {
+    } else {
         return fetch (`${this._baseUrl}/cards/likes/${id}`, {
             method: 'DELETE',
             headers: {
@@ -96,6 +95,7 @@ class Api {
             }
         })
         .then(res => this._getResponseData(res))
+        }
     }
 
     _getResponseData(res) {
