@@ -24,6 +24,7 @@ function EditProfilePopup(props) {
           name,
           about: description,
         });
+        
     } 
 
     // После загрузки текущего пользователя из API
@@ -31,7 +32,7 @@ function EditProfilePopup(props) {
     React.useEffect(() => {
         setName(currentUser.name);
         setDescription(currentUser.about);
-    }, [currentUser]); 
+    }, [currentUser, props.isOpen]); 
 
     return(
         <PopupWithForm 
