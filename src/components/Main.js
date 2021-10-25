@@ -31,7 +31,6 @@ function Main(props) {
                     )}
                 </ul>
             </section>
-
         </main>
     )
 }
