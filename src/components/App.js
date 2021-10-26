@@ -110,8 +110,9 @@ function App() {
     authApi(password, email, 'signup')
       .then((res) => {
         if (res.data) {
-          setIsTooltipPopupOpen(true);
+    //      setIsTooltipPopupOpen(true);
           history.push("/sign-in");
+          setIsRegistrationOk(true);
         }
       })
       .catch((e) => {
@@ -119,7 +120,10 @@ function App() {
           console.log(`Ошибка при регистрации пользователя: ${e}`);
         }
           setIsRegistrationOk(false);
-          setIsTooltipPopupOpen(true);
+  //        setIsTooltipPopupOpen(true);
+      })
+      .finally(() => {
+        setIsTooltipPopupOpen(true)
       });
   }
 
@@ -129,7 +133,7 @@ function App() {
       .then((res) => {
         if (res.token) {
           console.log(res.token)
-          setIsTooltipPopupOpen(true);
+    //      setIsTooltipPopupOpen(true);
           localStorage.setItem("jwt", res.token);
           setLoggedIn(true);
           history.push("/sign-in");
@@ -173,6 +177,18 @@ function App() {
         .catch(e => console.log(`Ошибка при получении email пользователя: ${e}`));
     }
   }, [loggedIn]);
+
+  React.useEffect(() => {
+    const closeByEscape = (e) => {
+      if (e.key === 'Escape') {
+        closeAllPopups();
+      }
+    }
+
+    document.addEventListener('keydown', closeByEscape)
+    
+    return () => document.removeEventListener('keydown', closeByEscape)
+  }, [])
 
 
   return (

@@ -5,7 +5,7 @@ import authErrPath from "./../images/auth_err.svg"
 function InfoTooltip(props) {
   return (
     <div className={`popup popup_type_info ${props.isOpen ? ('popup_visible') : ('')}`}>
-      <div className="popup__overlay"></div>
+      <div className="popup__overlay" onClick={props.onClose}></div>
       <div className="popup__container popup-info__container">
         {props.isRegistrationOk ? (
           <img className="popup-info__image" src={authOkPath} alt="все ок" />
