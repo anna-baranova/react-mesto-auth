@@ -136,7 +136,7 @@ function App() {
     //      setIsTooltipPopupOpen(true);
           localStorage.setItem("jwt", res.token);
           setLoggedIn(true);
-          history.push("/sign-in");
+          history.push("/");
         }
       })
       .catch((e) => {
@@ -155,16 +155,6 @@ function App() {
   }
 
   React.useEffect(() => {
-    api.getFullData()
-      .then(([userData, cardsData]) => {
-        setCurrentUser(userData)    
-        setCards(cardsData)
-      })
-      .catch(e => console.log(`Ошибка при получении дефолтных данных: ${e}`))
-    }, [])
-
-
-  React.useEffect(() => {
     if (localStorage.getItem("jwt")) {
       authApiToken(localStorage.getItem("jwt"))
         .then((res) => {
@@ -177,6 +167,15 @@ function App() {
         .catch(e => console.log(`Ошибка при получении email пользователя: ${e}`));
     }
   }, [loggedIn]);
+
+  React.useEffect(() => {
+    api.getFullData()
+      .then(([userData, cardsData]) => {
+        setCurrentUser(userData)    
+        setCards(cardsData)
+      })
+      .catch(e => console.log(`Ошибка при получении дефолтных данных: ${e}`))
+    }, [])
 
   React.useEffect(() => {
     const closeByEscape = (e) => {
